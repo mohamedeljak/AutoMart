@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Buy and sell cars">
+  <meta name="keywords" content="cars,dealers">
+  <meta name="author" content="Mohamed Eljak">
+  <title>AutoMart  </title>
+	<link rel="stylesheet"  href="./css/style.css">
+ </head>
+ <body>
+  <header>
+	<div class="container">
+	  <div id="brand">
+	  <img src="./images/car11.png" width="200" height="50">
+		<h1>
+
+	  </div>
+	<nav>
+	  <ul>
+			<li class="current"><a href="index.html">Home</a></li>
+			<li id="signinupbutton"><a href="#main" onclick ="signup()" >Sgin up</a></li>
+      <li ><a href="userx.html" target="_blank" >User Page</a></li>
+      <li ><a href="admin.html" target="_blank" >Admin Page</a></li>
+			<li><a href="#contactus">contact us</a></li>
+
+	  </ul>
+
+	 </nav>
+		
+
+	</div>
+
+  </header>
+  <section id="showcase">
+     <div class="container">
+	   <h1>Buy and Sell Your Car Online</h1>
+	      <p>
+		
+          </p>
+
+      </div>
+	
+
+  </section>
+  <section id="main">
+ <div id="signup"  style="display:none; ">
+      <div class="container" >
+      <article id="main-col">
+      <h1 id="page-title">SignUP </h1>
+      <p>
+
+     Please sign up to use the system.... 
+</p>     	
+
+      </article>   
+      <aside id="sidebar">
+      <div class="dark">
+      	<h3>Sign Up</h3>
+      	<form class="quote">
+        <div>
+        <label>Name</label><br>
+        <input type="text" placeholder="Full Name">
+        </div>
+
+        <div>
+        <label>Email</label><br>
+        <input type="email" placeholder="Email">
+        </div>
+        <div>
+        <label>Password</label><br>
+        <input type="password"  minlength="8" required placeholder="Password">
+        
+        </div> 
+        <button class="button_1" type="submit">Submit</button>    		
+
+      	</form>
+      </div>
+      </aside>
+
+	  </div>
+	  </div>
+      <div id="signin" style="display:none ;">
+      <div class="container" >
+      <article id="main-col">
+      <h1 id="page-title">Sign In  </h1>
+      <p>
+
+     Please, enter your email and password....  
+</p>     	
+
+      </article>   
+      <aside id="sidebar">
+      <div class="dark">
+      	<h3>Sign In</h3>
+      	<form class="quote">
+        <div>
+        <label>Email</label><br>
+        <input type="email" placeholder="Email">
+        </div>
+        <div>
+        <label>Password</label><br>
+        <input type="password"  minlength="8" required placeholder="Password">
+        
+        </div> 
+        <button class="button_1" type="submit">Submit</button>    		
+
+      	</form>
+      </div>
+      </aside>
+
+	  </div>
+	  </div>
+  
+
+  </section>
+  <section id="newsletter">
+     <div class="container">
+	    <h1> Subsrcibe to our newsletter</h1>
+	    <form>
+		  <input type="email" placeholder="Please, enter your mail address">
+		  <button type="submit" class="button_1" >Subscribe</button>
+        </form>
+
+     </div>	
+
+
+  </section>
+  
+   
+
+
+  <footer id="contactus">
+  <p>Copyright &copy; 2019 bady.mohamed@gmail.com </p>	
+  </footer>
+</body>
+<script>
+const Signup = document.getElementById('signup');
+const signin = document.getElementById('signin');
+const signupinbutton=document.getElementById('signinupbutton'); 
+ function signup(){
+  
+  Signup.style.display="block";
+   signin.style.display="none";
+   signupinbutton.innerHTML= '<a href="#main" onclick ="signinxx()" >Sgin in</a>';
+ }
+
+ function signinxx(){
+  Signup.style.display="none";
+   signin.style.display="block";
+   signupinbutton.innerHTML= '<a href="#main" onclick ="signup()" >Sgin up</a>';
+
+ }
+
+
+</script>
+
+</html>
