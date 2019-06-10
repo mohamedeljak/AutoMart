@@ -1,0 +1,13 @@
+
+
+// car add 
+{"stutas" : "1" ,"data" :{"email": "jjjjjjjjjj@hhhhhhh.con"  , "manufacture": "toyota","price" : 900000 }  }
+
+
+// signup 
+{"stutas" : "1" ,"data" :{"email": "jjjjjjjjjj@hhhhhhh.con"  , "first_name": "mohamed","password" : "123456" }  }
+
+
+// create order add
+
+{"stutas" : "1" ,"data" :{"car_id": "12332222"  , "price": 200,"price_offered" : 400 }  }
