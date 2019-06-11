@@ -5,7 +5,7 @@
 
 
 // signup 
-{"stutas" : "1" ,"data" :{"email": "jjjjjjjjjj@hhhhhhh.con"  , "first_name": "mohamed","password" : "123456" }  }
+{"stutas" : "1" ,"data" :{"email": "jjjjjjjjjj@hhhhhhh.con"  , "first_name": "mohamed","first_name": "eljak","password" : "123456" }  }
 
 
 // create order add

@@ -25,10 +25,10 @@ class Reflection {
          id: uuid.v4(),
          email: data.email ,
          first_name: data.first_name,
-         last_name: data.last_name,
+         last_name: data.last_name || ' ',
          token : uuid.v4(),
-         address :data.address ,
-         is_admin : data.is_admin ,
+         address :data.address || ' ',
+         is_admin : data.is_admin || ' ',
          password : data.password
          },
       createdDate: moment.now(),
@@ -41,16 +41,16 @@ class Reflection {
   ///////////////////////////////Signin
   createsignin(data) {
     const newReflectionsign = {
-      stutas: '1',
+      stutas: '1' || ' ',
       data :{
 
          id: uuid.v4(),
          email: data.email ,
          first_name: data.first_name,
-         last_name: data.last_name ,
+         last_name: data.last_name || ' ',
          token : uuid.v4(),
-         address :data.address ,
-         is_admin : data.is_admin ,
+         address :data.address || ' ',
+         is_admin : data.is_admin || ' ',
          password : data.password
          },
       createdDate: moment.now(),
@@ -61,18 +61,19 @@ class Reflection {
   }
   //////////////////////////////////////End signin
 ///////////////////////////////create car post ad
+ ////////////////  goes to ads model
   createcarad(data) {
     const newReflectioncreatecarad = {
-      stutas: '1',
+      stutas: '1' || ' ',
       data :{
 
          id: uuid.v4(),
          email: data.email ,
          manufacture:data.manufacture,
-         model: data.model ,
+         model: data.model || ' ',
          price: data.price,
-         state : data.state ,
-         status : data.status ,
+         state : data.state || 'new',
+         status : data.status || 'available' ,
          created_on: moment.now(),
          modified_on: moment.now()
          
@@ -87,7 +88,7 @@ class Reflection {
   ///////////////////////////////create order post
   createorderad(data) {
     const newReflectioncreateorder = {
-      stutas: '1',
+      stutas: '1' || ' ',
      
       data :{
 
@@ -113,6 +114,7 @@ class Reflection {
    * @param {uuid} id
    * @returns {object} reflection object
    */
+   /////////////////////////  end to ads model
   findOne(id) {
     return this.reflections.find(reflect => reflect.id === id);
   }
@@ -132,6 +134,8 @@ class Reflection {
   findA1(success , lowPoint) {
 return this.reflections.filter(( reflect => reflect.lowPoint === lowPoint) && (reflect => reflect.success === success));
   }
+
+  /////  to ads models ////
 
 findsoldcarpricerange(q) {
 console.log(Object.keys(q).length);
@@ -163,7 +167,7 @@ else {
 return this.reflectionscreatecaradd.filter((reflect => reflect.data.status === status ));
   }
 
-  
+  /////////  to ads model
   /**
    * @returns {object} returns all reflections
    */

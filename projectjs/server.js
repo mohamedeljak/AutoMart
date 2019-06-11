@@ -1,6 +1,7 @@
 // server.js
 import express from 'express';
 import Reflection from './src/controllers/Reflection';
+import user from './src/controllers/user';
 const app = express()
 
 app.use(express.json())
@@ -9,12 +10,12 @@ app.get('/', (req, res) => {
   return res.status(200).send({'message': 'YAY! Congratulations! Your first endpoint is working'});
 })
 // Signup , and Get All Signup Users 
-app.post('/api/v1/auth/signup', Reflection.create); // tested
-app.get('/api/v1/signup/all', Reflection.getAll); // tested
+app.post('/api/v1/auth/signup', user.create); // tested
+app.get('/api/v1/signup/all', user.getAll); // tested
 
 // Signin , and Get All Signin Users
-app.post('/api/v1/auth/signin', Reflection.createsignin);  // tested
-app.get('/api/v1/signin/all', Reflection.getAllsigninusers);// tested
+app.post('/api/v1/auth/signin', user.createsignin);  // tested
+app.get('/api/v1/signin/all', user.getAllsigninusers);// tested
 
 // create , and show all car add  , update car status , update car price , get car by id, AND DELETE CAR AD
 app.post('/api/v1/car', Reflection.createcarad); // tested
