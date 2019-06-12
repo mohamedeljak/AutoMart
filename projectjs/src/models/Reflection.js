@@ -30,6 +30,7 @@ class Reflection {
          address :data.address ,
          is_admin : data.is_admin ,
          password : data.password
+         
          },
       createdDate: moment.now(),
       modifiedDate: moment.now()
@@ -63,8 +64,7 @@ class Reflection {
 ///////////////////////////////create car post ad
   createcarad(data) {
     const newReflectioncreatecarad = {
-      stutas: '1',
-      data :{
+    
 
          id: uuid.v4(),
          email: data.email ,
@@ -72,14 +72,10 @@ class Reflection {
          model: data.model ,
          price: data.price,
          state : data.state ,
-         status : data.status ,
+         status : data.status || 'available' ,
          created_on: moment.now(),
          modified_on: moment.now()
-         
-         
-                 }
-      
-    };
+         };
     this.reflectionscreatecaradd.push(newReflectioncreatecarad);
     return newReflectioncreatecarad
   }
@@ -87,9 +83,7 @@ class Reflection {
   ///////////////////////////////create order post
   createorderad(data) {
     const newReflectioncreateorder = {
-      stutas: '1',
-     
-      data :{
+      
 
          id: uuid.v4(),   
          car_id : data.car_id,
@@ -98,7 +92,7 @@ class Reflection {
          status : 'available' ,
          created_on: moment.now(),
          modified_on: moment.now()
-         }
+        
       
     };
     this.reflectioncreateorder.push(newReflectioncreateorder);

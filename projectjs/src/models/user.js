@@ -1,6 +1,13 @@
 import moment from 'moment';
 import uuid from 'uuid';
+import jwt from 'jsonwebtoken';
 
+
+
+//import joi  from 'joi';
+const Joi = require('joi');
+const JSON = require('circular-json');
+const key = require('../key');
 class user {
   /**
    * class constructor
@@ -16,46 +23,50 @@ class user {
    */
   ///////////////////////////////Signup
   create(data) {
-    const newReflection = {
-      stutas: '1' ,
-      data :{
+    console.log(data);
+   const schemasignup = Joi.object().keys({
+    //first_name: Joi.string().alphanum().min(3).max(30).required(),
+    //password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)
+         stutas: Joi.string().min(1).max(1).required() ,
+         })
 
+   //const result = Joi.validate({ username: 'abc', birthyear: 1994 }, schema);
+    
+    const id= uuid.v4();
+    const token = jwt.sign({id:id},key.tokenkey);
+   
+  const newReflection = {
          id: uuid.v4(),
          email: data.email ,
          first_name: data.first_name,
-         last_name: data.last_name ,
-         token : uuid.v4(),
+         last_name: data.last_name,
+         token : token,
          address :data.address ,
          is_admin : data.is_admin ,
-         password : data.password
-         },
-      createdDate: moment.now(),
-      modifiedDate: moment.now()
-    };
+         password : data.password,
+         createdDate: moment.now(),
+         modifiedDate: moment.now()
+         };
+  
     this.reflections.push(newReflection);
     return newReflection
+   
+  
+  
   }
   //////////////////////////////////////End signup
   ///////////////////////////////Signin
-  createsignin(data) {
-    const newReflectionsign = {
-      stutas: '1' ,
-      data :{
+  getunsigninuser(q) {
+    console.log(q.email);
+    console.log(q.password);
+    //console.log(Object.keys(q).length);
+   const emailfound = this.reflections.find(reflect => reflect.email === q.email);
+   const passwordfound = this.reflections.find(reflect => reflect.password === q.password); 
+   if (emailfound && passwordfound){
+  
+    return this.reflections.find(reflect => reflect.email === q.email);
+    }
 
-         id: uuid.v4(),
-         email: data.email ,
-         first_name: data.first_name,
-         last_name: data.last_name ,
-         token : uuid.v4(),
-         address :data.address ,
-         is_admin : data.is_admin ,
-         password : data.password
-         },
-      createdDate: moment.now(),
-      modifiedDate: moment.now()
-    };
-    this.reflectionssignin.push(newReflectionsign);
-    return newReflectionsign
   }
   //////////////////////////////////////End signin
 ///////////////////////////////create car post ad

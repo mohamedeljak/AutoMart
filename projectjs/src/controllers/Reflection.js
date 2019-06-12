@@ -23,18 +23,18 @@ const Reflection = {
     return res.status(201).send(reflection);
   },
  createcarad(req, res) {
-    if (!req.body.data.email || !req.body.data.manufacture ||  !req.body.data.price) {
+    if (!req.body.email || !req.body.manufacture ||  !req.body.price) {
       return res.status(400).send({'message': '  car ad  All fields are required'})
     }
-    const reflection = ReflectionModel.createcarad(req.body.data);
+    const reflection = ReflectionModel.createcarad(req.body);
     return res.status(201).send(reflection);
   },
 
 createorderad(req, res) {
-    if (!req.body.data.car_id || !req.body.data.price  ||  !req.body.data.price_offered) {
+    if (!req.body.car_id || !req.body.price  ||  !req.body.price_offered) {
       return res.status(400).send({'message': '  order ad  All fields are required'})
     }
-    const reflection = ReflectionModel.createorderad(req.body.data);
+    const reflection = ReflectionModel.createorderad(req.body);
     return res.status(201).send(reflection);
   },
 
