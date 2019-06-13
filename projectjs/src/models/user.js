@@ -32,8 +32,8 @@ class user {
 
    //const result = Joi.validate({ username: 'abc', birthyear: 1994 }, schema);
     
-    const id= uuid.v4();
-    const token = jwt.sign({id:id},key.tokenkey);
+    const email= data.email;
+    const token = jwt.sign({email:email},key.tokenkey);
    
   const newReflection = {
          id: uuid.v4(),

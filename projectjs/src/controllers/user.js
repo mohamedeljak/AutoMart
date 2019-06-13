@@ -6,7 +6,7 @@ create(req, res) {
       return res.status(400).send({'message': ' signup All fields are required when signup'})
     }
     const reflection = userModel.create(req.body);
-    return res.status(201).send(reflection);
+    return res.status(201).send({"status":201 , "message": "User is created", "data" : reflection   });
   },
 
  createsignin(req, res) {
