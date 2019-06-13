@@ -2,6 +2,7 @@
 import express from 'express';
 import Reflection from './src/controllers/Reflection';
 import user from './src/controllers/user';
+import auth from './src/mid/authenticationMiddleware';
 const app = express()
 
 app.use(express.json())
@@ -18,15 +19,15 @@ app.post('/api/v1/auth/signin', user.getunsigninuser);  // tested
 //app.get('/api/v1/signin/all', user.getAllsigninusers);// tested
 
 // create , and show all car add  , update car status , update car price , get car by id, AND DELETE CAR AD
-app.post('/api/v1/car', Reflection.createcarad); // tested
+app.post('/api/v1/car', auth ,Reflection.createcarad); // tested
 //app.get('/api/v1/car', Reflection.getAllcarsads); // tested
-app.patch('/api/v1/car/:id/status', Reflection.updatecarstatus); // tested
-app.patch('/api/v1/car/:id/:car_price', Reflection.updatecarprice); // tested
+app.patch('/api/v1/car/:id/status',auth, Reflection.updatecarstatus); // tested
+app.patch('/api/v1/car/:id/:car_price', auth ,Reflection.updatecarprice); // tested
 app.get('/api/v1/car/:id', Reflection.getOneCar);// tested
-app.delete('/api/v1/car/:id', Reflection.deletecarad); 
+app.delete('/api/v1/car/:id', auth , Reflection.deletecarad); 
 //  create . and show , and update  order   price
 
-app.post('/api/v1/order', Reflection.createorderad); // tested
+app.post('/api/v1/order', auth , Reflection.createorderad); // tested
 app.get('/api/v1/orders/all', Reflection.getAllorders);// tested
 app.patch('/api/v1/order/:id/:new_price', Reflection.updateorderprice); // tested
 app.get('/api/v1/order/:id', Reflection.getOrderOne); // tested

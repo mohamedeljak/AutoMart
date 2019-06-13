@@ -7,7 +7,9 @@ import jwt from 'jsonwebtoken';
 //import joi  from 'joi';
 const Joi = require('joi');
 const JSON = require('circular-json');
-const key = require('../key');
+//const key = require('../key');
+const key = require('../mid/key');
+
 class user {
   /**
    * class constructor
@@ -23,7 +25,7 @@ class user {
    */
   ///////////////////////////////Signup
   create(data) {
-    console.log(data);
+    //console.log(data);
    const schemasignup = Joi.object().keys({
     //first_name: Joi.string().alphanum().min(3).max(30).required(),
     //password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)
@@ -32,8 +34,8 @@ class user {
 
    //const result = Joi.validate({ username: 'abc', birthyear: 1994 }, schema);
     
-    const id= uuid.v4();
-    const token = jwt.sign({id:id},key.tokenkey);
+    const email= data.email;
+    const token = jwt.sign({email:email},key.tokenkey);
    
   const newReflection = {
          id: uuid.v4(),
@@ -47,7 +49,8 @@ class user {
          createdDate: moment.now(),
          modifiedDate: moment.now()
          };
-  
+      
+      //console.log(newReflection.token)
     this.reflections.push(newReflection);
     return newReflection
    

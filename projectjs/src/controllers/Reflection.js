@@ -27,7 +27,7 @@ const Reflection = {
       return res.status(400).send({'message': '  car ad  All fields are required'})
     }
     const reflection = ReflectionModel.createcarad(req.body);
-    return res.status(201).send(reflection);
+    return res.status(201).send({"status":201 , "message": "Car AD  is created", "data" : reflection});
   },
 
 createorderad(req, res) {
@@ -35,7 +35,7 @@ createorderad(req, res) {
       return res.status(400).send({'message': '  order ad  All fields are required'})
     }
     const reflection = ReflectionModel.createorderad(req.body);
-    return res.status(201).send(reflection);
+    return res.status(201).send({"status":201 , "message": "Buy Order  is created", "data" : reflection});
   },
 
 
