@@ -33,6 +33,5 @@
     "babel-watch": "^7.0.0",
     "jasmine": "^3.4.0"
   },
-  "resolutions": { "babel-core": "^7.0.0-bridge" }
 
 }
