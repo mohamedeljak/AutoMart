@@ -7,3 +7,8 @@ cache:
 
 script:
      npm run test:coveralls
+
+branches:
+  only:
+    - develop-2
+    
