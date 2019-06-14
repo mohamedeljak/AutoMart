@@ -29,8 +29,8 @@ app.delete('/api/v1/car/:id', auth , Reflection.deletecarad);
 
 app.post('/api/v1/order', auth , Reflection.createorderad); // tested
 app.get('/api/v1/orders/all', Reflection.getAllorders);// tested
-app.patch('/api/v1/order/:id/:new_price', Reflection.updateorderprice); // tested
-app.get('/api/v1/order/:id', Reflection.getOrderOne); // tested
+app.patch('/api/v1/order/:id/:new_price', auth, Reflection.updateorderprice); // tested
+app.get('/api/v1/order/:id', auth , Reflection.getOrderOne); // tested
 
 // view car unsold , view unsold car with price rang
 //app.get('/api/v1/car', Reflection.getunsoldcar);

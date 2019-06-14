@@ -85,7 +85,7 @@ getAllorders(req, res) {
     if (!reflection) {
       return res.status(404).send({'message': ' Order not found not found'});
     }
-    return res.status(200).send(reflection);
+    return res.status(200).send({"status":200 , "message": " Get order ad by id ", "data" :reflection});
   },
 
   getOneCar(req, res) {
@@ -93,7 +93,7 @@ getAllorders(req, res) {
     if (!reflection) {
       return res.status(404).send({'message': ' Car found not found'});
     }
-    return res.status(200).send(reflection);
+    return res.status(200).send({"status":200 , "message": " Get car ad by id ", "data" :reflection});
   },
 
   getA1(req, res) {
@@ -158,7 +158,7 @@ updatecarstatus(req, res) {
       return res.status(404).send({'message': ' ID error  Can not update car stutas to sold   '});
     }
     const updatedReflection = ReflectionModel.updatecarstatus(req.params.id, req.body)
-    return res.status(200).send(updatedReflection);
+    return res.status(200).send({"status":200 , "message": " successfully updated  car status to sold", "data" :updatedReflection});
   },
 
   updatecarprice(req, res) {

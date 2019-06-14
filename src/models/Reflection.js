@@ -118,7 +118,7 @@ class Reflection {
   }
 
   findCarOne(id) {
-    return this.reflectionscreatecaradd.find(reflect => reflect.data.id === id);
+    return this.reflectionscreatecaradd.find(reflect => reflect.id === id);
   }
 
 
@@ -141,13 +141,13 @@ console.log(q.max_price);
     }
 
 else if (Object.keys(q).length === 1) {
-   return this.reflectionscreatecaradd.filter((reflect => reflect.data.status === q.status ));
+   return this.reflectionscreatecaradd.filter((reflect => reflect.status === q.status ));
 
    }
 else {
 
   return this.reflectionscreatecaradd.filter(
-    ( reflect => reflect.data.status === q.status)).filter(reflect => reflect.data.price > parseFloat(q.min_price)).filter(reflect => reflect.data.price < parseFloat(q.max_price));
+    ( reflect => reflect.status === q.status)).filter(reflect => reflect.price > parseFloat(q.min_price)).filter(reflect => reflect.price < parseFloat(q.max_price));
 
 }
   }
@@ -211,7 +211,7 @@ updateorderprice(id, data, new_price) {
     const reflection = this.findCarOne(id);
     const index = this.reflectionscreatecaradd.indexOf(reflection);
     
-    this.reflectionscreatecaradd[index].data.status = "sold" ;
+    this.reflectionscreatecaradd[index].status = "sold" ;
        
     return this.reflectionscreatecaradd[index];
   }
@@ -220,7 +220,7 @@ updateorderprice(id, data, new_price) {
     const reflection = this.findCarOne(id);
     const index = this.reflectionscreatecaradd.indexOf(reflection);
     
-    this.reflectionscreatecaradd[index].data.price = parseFloat(car_price) ;
+    this.reflectionscreatecaradd[index].price = parseFloat(car_price) ;
        
     return this.reflectionscreatecaradd[index];
   }
