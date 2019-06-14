@@ -114,7 +114,7 @@ class Reflection {
   
 
   findoderOne(id) {
-    return this.reflectioncreateorder.find(reflect => reflect.data.id === id);
+    return this.reflectioncreateorder.find(reflect => reflect.id === id);
   }
 
   findCarOne(id) {
@@ -196,10 +196,10 @@ updateorderprice(id, data, new_price) {
     const reflection = this.findoderOne(id);
     const index = this.reflectioncreateorder.indexOf(reflection);
     
-    this.reflectioncreateorder[index].data.old_price_offered = data.data['price_offered'] || reflection.data.price_offered ;
-    this.reflectioncreateorder[index].data.price_offered = this.reflectioncreateorder[index].data.old_price_offered; 
-    delete this.reflectioncreateorder[index].data.price_offered;
-   this.reflectioncreateorder[index].data.new_price_offered= new_price ;
+    this.reflectioncreateorder[index].old_price_offered = data['price_offered'] || reflection.price_offered ;
+    this.reflectioncreateorder[index].price_offered = this.reflectioncreateorder[index].old_price_offered; 
+    delete this.reflectioncreateorder[index].price_offered;
+   this.reflectioncreateorder[index].new_price_offered= new_price ;
     /*
     this.reflections[index].lowPoint = data['lowPoint'] || reflection.lowPoint;
     this.reflections[index].takeAway = data['takeAway'] || reflection.takeAway;

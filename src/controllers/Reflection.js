@@ -57,13 +57,13 @@ createorderad(req, res) {
 
    getAllcarsads(req, res) {
     const reflections = ReflectionModel.findAllcarsads();
-    return res.status(200).send(reflections);
+    return res.status(200).send({"status":200 , "message": "all cars ", "data" : reflections});
   },
 
 
 getAllorders(req, res) {
     const reflections = ReflectionModel.findAllorders();
-    return res.status(200).send(reflections);
+    return res.status(200).send({"status":200 , "message": "all orders ", "data" :reflections});
   },
 
   /**
@@ -112,7 +112,7 @@ getunsoldcarpricerange(req, res) {
     if (!reflection) {
       return res.status(404).send({'message': '  unsold price  seach  not found'});
     }
-    return res.status(200).send(reflection);
+    return res.status(200).send({"status":200 , "message": "all cars ", "data" :reflection});
   },
 
 getunsoldcar(req, res) {
@@ -147,7 +147,7 @@ updateorderprice(req, res) {
       return res.status(404).send({'message': ' update  order  not found'});
     }
     const updatedReflection = ReflectionModel.updateorderprice(req.params.id, req.body, new_price)
-    return res.status(200).send(updatedReflection);
+    return res.status(200).send({"status":200 , "message": " successfully updated ", "data" :updatedReflection});
   },
 
 /////////////////////////////////////////
@@ -168,7 +168,7 @@ updatecarstatus(req, res) {
       return res.status(404).send({'message': ' car_price not updated  '});
     }
     const updatedReflection = ReflectionModel.updatecarprice(req.params.id, req.body, car_price )
-    return res.status(200).send(updatedReflection);
+    return res.status(200).send({"status":200 , "message": " successfully updated ", "data" :updatedReflection});
   },
 
 
