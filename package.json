@@ -10,7 +10,8 @@
     "dev-start": "babel-watch server.js",
     "test": "./node_modules/jasmine/bin/jasmine.js",
     "build": "babel server.js --out-dir build",
-    "test-init": "./node_modules/jasmine/bin/jasmine.js init"
+    "test-init": "./node_modules/jasmine/bin/jasmine.js init",
+    "start" : "babel-watch server.js"
   },
   "author": "moeljak",
   "license": "ISC",
