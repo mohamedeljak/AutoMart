@@ -3,6 +3,7 @@ import express from 'express';
 import Reflection from './src/controllers/Reflection';
 import user from './src/controllers/user';
 import auth from './src/mid/authenticationMiddleware';
+import authadmin from './src/mid/authenticonAdmin';
 const app = express()
 
 app.use(express.json())
@@ -19,7 +20,7 @@ app.post('/api/v1/auth/signin', user.getunsigninuser);  // tested
 //app.get('/api/v1/signin/all', user.getAllsigninusers);// tested
 
 // create , and show all car add  , update car status , update car price , get car by id, AND DELETE CAR AD
-app.post('/api/v1/car', auth ,Reflection.createcarad); // tested
+app.post('/api/v1/car', authadmin ,Reflection.createcarad); // tested
 //app.get('/api/v1/car', Reflection.getAllcarsads); // tested
 app.patch('/api/v1/car/:id/status',auth, Reflection.updatecarstatus); // tested
 app.patch('/api/v1/car/:id/:car_price', auth ,Reflection.updatecarprice); // tested

@@ -24,13 +24,12 @@ class user {
    * @returns {object} reflection object
    */
   ///////////////////////////////Signup
+  
   create(data) {
-    //console.log(data);
-   const schemasignup = Joi.object().keys({
-    //first_name: Joi.string().alphanum().min(3).max(30).required(),
-    //password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)
-         stutas: Joi.string().min(1).max(1).required() ,
-         })
+    
+ 
+
+    
 
    //const result = Joi.validate({ username: 'abc', birthyear: 1994 }, schema);
     
