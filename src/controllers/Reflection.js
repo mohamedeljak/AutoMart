@@ -23,19 +23,40 @@ const Reflection = {
     return res.status(201).send(reflection);
   },
  createcarad(req, res) {
+  var token = req.headers['access-token'];
+  //console.log("token==="+token);
     if (!req.body.email || !req.body.manufacture ||  !req.body.price) {
       return res.status(400).send({'message': '  car ad  All fields are required'})
     }
-    const reflection = ReflectionModel.createcarad(req.body);
+    const reflection = ReflectionModel.createcarad(req.body,token);
+    var keyreflection = Object.keys(reflection).length;
+    //console.log("xxxxxxxxxx"+keyreflection); 
+    if (keyreflection > 2){ 
     return res.status(201).send({"status":201 , "message": "Car AD  is created", "data" : reflection});
+                          }
+
+                          else{
+                            console.log(ReflectionModel.createcarad.reflectioncaraddnotfound);
+                             return res.status(201).send({"status":201 , "message": " Car ad not created ", "data" :reflection});
+                            //return res.status(201).send({"status":404 , "message": "User not found check token please"});
+
+                          } 
   },
 
 createorderad(req, res) {
+  var token = req.headers['access-token'];
+  //console.log("token==="+token);
     if (!req.body.car_id || !req.body.price  ||  !req.body.price_offered) {
       return res.status(400).send({'message': '  order ad  All fields are required'})
     }
-    const reflection = ReflectionModel.createorderad(req.body);
+    const reflection = ReflectionModel.createorderad(req.body,token,req.params.car_id);
+    var keyreflection = Object.keys(reflection).length;
+    if (keyreflection > 2){
     return res.status(201).send({"status":201 , "message": "Buy Order  is created", "data" : reflection});
+     }
+     else {
+          return res.status(201).send({"status":201 , "message": " Order ad not created ", "data" :reflection});
+        }
   },
 
 

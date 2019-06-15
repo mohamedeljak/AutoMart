@@ -21,7 +21,7 @@ module.exports = (req, res, next) => {
 
     // decode token
     if (token) {
-     console.log(key.tokenkey)
+     //console.log(key.tokenkey)
       // verifies secret and checks if the token is expired
       jwt.verify(token, key.tokenkey , (err, decoded) =>{  
       //console.log('-----------------------',err)

@@ -1,6 +1,6 @@
 import moment from 'moment';
 import uuid from 'uuid';
-
+import user from '../models/user';
 class Reflection {
   /**
    * class constructor
@@ -41,7 +41,7 @@ class Reflection {
   //////////////////////////////////////End signup
   ///////////////////////////////Signin
   createsignin(data) {
-    const newReflectionsign = {
+const newReflectionsign = {
       stutas: '1',
       data :{
 
@@ -62,12 +62,27 @@ class Reflection {
   }
   //////////////////////////////////////End signin
 ///////////////////////////////create car post ad
-  createcarad(data) {
-    const newReflectioncreatecarad = {
+  createcarad(data,token) {
+    //console.log("tokenmodel"+token);
+    const reflection = user.reflections.find(reflect => reflect.token === token);
+    
+    if(!reflection){
+      const reflectioncaraddnotfound  = {"status":404 , "message": "User not found check please"};
+     //console.log("cccccccccc"+reflectioncaraddnotfound);
+     return reflectioncaraddnotfound;
+
+       
+
+
+    }
+    else {
+      //console.log("found="+reflection.email);
+     const newReflectioncreatecarad = {
     
 
          id: uuid.v4(),
-         email: data.email ,
+         user_id:reflection.id,
+         email: reflection.email ,
          manufacture:data.manufacture,
          model: data.model ,
          price: data.price,
@@ -78,15 +93,53 @@ class Reflection {
          };
     this.reflectionscreatecaradd.push(newReflectioncreatecarad);
     return newReflectioncreatecarad
+
+    }
+
+    
   }
   //////////////////////////////////////create car post a
   ///////////////////////////////create order post
-  createorderad(data) {
+  createorderad(data,token,car_id) {
+    const reflection = user.reflections.find(reflect => reflect.token === token);
+    
+    if(!reflection){
+      const reflectionodernotfound  = {"status":404 , "message": "User not found check please"};
+     return reflectionodernotfound ;
+       
+
+
+    }
+
+   else {
+     const reflectionfindcartoorder = this.reflectionscreatecaradd.find(reflect => reflect.id === car_id);
+      const reflectionfindcartoorderinorder = this.reflectioncreateorder.find(reflect => reflect.car_id === car_id);  
+      console.log("gggggggggggggggg"+reflectionfindcartoorderinorder);
+      
+    if (!reflectionfindcartoorder){
+          const reflectionorercaridnotfound = {"status":404 , "message": "this car ad not found"};
+          return reflectionorercaridnotfound;
+          
+    } 
+
+  else {
+
+ if(reflectionfindcartoorderinorder){
+                 
+              const reflectionorercaridnotfoundx = {"status":404 , "message": "this car  had already ordered"};
+          return reflectionorercaridnotfoundx;
+
+          }
+
+
+ else {
+    console.log("carid"+reflectionfindcartoorder.id);
     const newReflectioncreateorder = {
       
 
          id: uuid.v4(),   
-         car_id : data.car_id,
+         user_id:reflection.id,
+         car_id : reflectionfindcartoorder.id,
          price: data.price,    
          price_offered : data.price_offered,
          status : 'available' ,
@@ -97,6 +150,9 @@ class Reflection {
     };
     this.reflectioncreateorder.push(newReflectioncreateorder);
     return newReflectioncreateorder
+  }
+  }
+  }
   }
   ////////////////////////////////////// end create order post
 
@@ -110,6 +166,11 @@ class Reflection {
   findOne(id) {
     return this.reflections.find(reflect => reflect.id === id);
   }
+
+
+
+
+
 
   
 
