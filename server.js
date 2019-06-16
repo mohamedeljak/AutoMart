@@ -23,14 +23,14 @@ app.post('/api/v1/auth/signin', user.getunsigninuser);  // tested
 app.post('/api/v1/car', authadmin ,Reflection.createcarad); // tested
 //app.get('/api/v1/car', Reflection.getAllcarsads); // tested
 app.patch('/api/v1/car/:id/status',auth, Reflection.updatecarstatus); // tested
-app.patch('/api/v1/car/:id/:car_price', auth ,Reflection.updatecarprice); // tested
+app.patch('/api/v1/car/:id/price', auth ,Reflection.updatecarprice); // tested
 app.get('/api/v1/car/:id', Reflection.getOneCar);// tested
 app.delete('/api/v1/car/:id', auth , Reflection.deletecarad); 
 //  create . and show , and update  order   price
 
 app.post('/api/v1/order/:car_id', auth , Reflection.createorderad); // tested
 app.get('/api/v1/orders/all', Reflection.getAllorders);// tested
-app.patch('/api/v1/order/:id/:new_price', auth, Reflection.updateorderprice); // tested
+app.patch('/api/v1/order/:id/price', auth, Reflection.updateorderprice); // tested
 app.get('/api/v1/order/:id', auth , Reflection.getOrderOne); // tested
 
 // view car unsold , view unsold car with price rang

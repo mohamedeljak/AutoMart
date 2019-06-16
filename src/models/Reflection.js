@@ -253,14 +253,27 @@ return this.reflectionscreatecaradd.filter((reflect => reflect.data.status === s
   }
 
   
-updateorderprice(id, data, new_price) {
+updateorderprice(id, data, token) {
+  //console.log("jjjjjjjjjjjjjjjjjjjjjjjjj");
     const reflection = this.findoderOne(id);
     const index = this.reflectioncreateorder.indexOf(reflection);
+    const reflectionx = user.reflections.find(reflect => reflect.token === token);
     
-    this.reflectioncreateorder[index].old_price_offered = data['price_offered'] || reflection.price_offered ;
+    if(!reflectionx){
+      const reflectioncaraddnotfound  = {"status":404 , "message": "User not found check please"};
+     //console.log("cccccccccc"+reflectioncaraddnotfound);
+     return reflectioncaraddnotfound;
+
+   }
+ 
+ else {
+
+     if(reflection){
+    
+    this.reflectioncreateorder[index].old_price_offered = data['price_offered'] || reflection.price_offered || reflection.new_price_offered  ;
     this.reflectioncreateorder[index].price_offered = this.reflectioncreateorder[index].old_price_offered; 
     delete this.reflectioncreateorder[index].price_offered;
-   this.reflectioncreateorder[index].new_price_offered= new_price ;
+   this.reflectioncreateorder[index].new_price_offered= data.price ;
     /*
     this.reflections[index].lowPoint = data['lowPoint'] || reflection.lowPoint;
     this.reflections[index].takeAway = data['takeAway'] || reflection.takeAway;
@@ -268,22 +281,81 @@ updateorderprice(id, data, new_price) {
     */
     return this.reflectioncreateorder[index];
   }
- updatecarstatus(id, data) {
+ 
+  else {
+ 
+     const reflectionord = {"status":404 , "message": "Order not found"};
+          return reflectionord;
+
+  }
+
+}
+  
+
+  }
+
+
+ updatecarstatus(id, data, token) {
     const reflection = this.findCarOne(id);
     const index = this.reflectionscreatecaradd.indexOf(reflection);
-    
+    const reflectionx = user.reflections.find(reflect => reflect.token === token);
+    if(!reflectionx){
+      const reflectioncaraddnotfound  = {"status":404 , "message": "User not found check please"};
+     //console.log("cccccccccc"+reflectioncaraddnotfound);
+     return reflectioncaraddnotfound;
+
+   }
+
+   else{
+   if (reflection){   
     this.reflectionscreatecaradd[index].status = "sold" ;
        
     return this.reflectionscreatecaradd[index];
   }
+  else {
+    const reflectioncaraddd = {"status":404 , "message": "car add not found to be updated to sold"};
+          return reflectioncaraddd;
 
-  updatecarprice(id, data, car_price) {
+  }
+}
+  }
+
+  updatecarprice(id, data, token) {
     const reflection = this.findCarOne(id);
     const index = this.reflectionscreatecaradd.indexOf(reflection);
     
-    this.reflectionscreatecaradd[index].price = parseFloat(car_price) ;
+    const reflectionx = user.reflections.find(reflect => reflect.token === token);
+    if(!reflectionx){
+      const reflectioncaraddnotfound  = {"status":404 , "message": "User not found check please"};
+     //console.log("cccccccccc"+reflectioncaraddnotfound);
+     return reflectioncaraddnotfound;
+
+   }
+  else {
+
+    if(reflection){
+     console.log(reflection.status)
+     if (reflection.status === "available"){    
+      
+    this.reflectionscreatecaradd[index].price = parseFloat(data.price) ;
        
     return this.reflectionscreatecaradd[index];
+  }
+  else {
+
+    const reflectioncaraddd = {"status":404 , "message": "Can not Update this car is sold"};
+          return reflectioncaraddd;
+  }
+    
+
+    }  // end if refelction
+    else {
+    const reflectioncaraddd = {"status":404 , "message": "car add not found"};
+          return reflectioncaraddd;
+
+    }
+    }
+  
   }
 
   /**

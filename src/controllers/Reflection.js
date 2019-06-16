@@ -25,7 +25,7 @@ const Reflection = {
  createcarad(req, res) {
   var token = req.headers['access-token'];
   //console.log("token==="+token);
-    if (!req.body.email || !req.body.manufacture ||  !req.body.price) {
+    if (!req.body.email || req.body.email === ""  ||  !req.body.manufacture ||  !req.body.price) {
       return res.status(400).send({'message': '  car ad  All fields are required'})
     }
     const reflection = ReflectionModel.createcarad(req.body,token);
@@ -162,34 +162,72 @@ getunsoldcar(req, res) {
   },
 
 updateorderprice(req, res) {
+  var token = req.headers['access-token'];
     var new_price=req.params.new_price;
     const reflection = ReflectionModel.findoderOne(req.params.id);
+    /*
     if (!reflection) {
       return res.status(404).send({'message': ' update  order  not found'});
     }
-    const updatedReflection = ReflectionModel.updateorderprice(req.params.id, req.body, new_price)
+    */
+    const updatedReflection = ReflectionModel.updateorderprice(req.params.id, req.body, token)
+    console.log(updatedReflection); 
+    var keyreflection = Object.keys(updatedReflection).length;
+    if (keyreflection > 2 ){
     return res.status(200).send({"status":200 , "message": " successfully updated ", "data" :updatedReflection});
+    }
+    else {
+return res.status(201).send({"status":201 , "message": " order offered price not updated ", "data" :updatedReflection});
+                            //return res.status(201).send({"status":404 , "message": "User not found check token please"});
+
+
+    }
   },
 
 /////////////////////////////////////////
 updatecarstatus(req, res) {
+  var token = req.headers['access-token'];
     var new_price=req.params.new_price;
     const reflection = ReflectionModel.findCarOne(req.params.id);
+    /*
     if (!reflection) {
       return res.status(404).send({'message': ' ID error  Can not update car stutas to sold   '});
     }
-    const updatedReflection = ReflectionModel.updatecarstatus(req.params.id, req.body)
+    */
+    const updatedReflection = ReflectionModel.updatecarstatus(req.params.id, req.body,token)
+     var keyreflection = Object.keys(updatedReflection).length;
+   if (keyreflection > 2){
     return res.status(200).send({"status":200 , "message": " successfully updated  car status to sold", "data" :updatedReflection});
+  }
+  else {
+return res.status(201).send({"status":201 , "message": " Car Ad Status not updated ", "data" :updatedReflection});
+                            //return res.status(201).send({"status":404 , "message": "User not found check token please"});
+
+
+  }
   },
 
   updatecarprice(req, res) {
+    var token = req.headers['access-token'];
     var car_price=req.params.car_price;
     const reflection = ReflectionModel.findCarOne(req.params.id);
+    /*
     if (!reflection) {
       return res.status(404).send({'message': ' car_price not updated  '});
     }
-    const updatedReflection = ReflectionModel.updatecarprice(req.params.id, req.body, car_price )
+    */
+    const updatedReflection = ReflectionModel.updatecarprice(req.params.id, req.body, token )
+    var keyreflection = Object.keys(updatedReflection).length;
+    if (keyreflection > 2){
     return res.status(200).send({"status":200 , "message": " successfully updated ", "data" :updatedReflection});
+    }
+  else {
+      return res.status(201).send({"status":201 , "message": " Car price not updated ", "data" :updatedReflection});
+                            //return res.status(201).send({"status":404 , "message": "User not found check token please"});
+
+
+  }
+
   },
 
 
