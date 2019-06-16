@@ -114,7 +114,7 @@ const newReflectionsign = {
    else {
      const reflectionfindcartoorder = this.reflectionscreatecaradd.find(reflect => reflect.id === car_id);
       const reflectionfindcartoorderinorder = this.reflectioncreateorder.find(reflect => reflect.car_id === car_id);  
-      console.log("gggggggggggggggg"+reflectionfindcartoorderinorder);
+   //   console.log("gggggggggggggggg"+reflectionfindcartoorderinorder);
       
     if (!reflectionfindcartoorder){
           const reflectionorercaridnotfound = {"status":404 , "message": "this car ad not found"};
@@ -133,7 +133,7 @@ const newReflectionsign = {
 
 
  else {
-    console.log("carid"+reflectionfindcartoorder.id);
+    //console.log("carid"+reflectionfindcartoorder.id);
     const newReflectioncreateorder = {
       
 
@@ -189,11 +189,11 @@ return this.reflections.filter(( reflect => reflect.lowPoint === lowPoint) && (r
   }
 
 findsoldcarpricerange(q) {
-console.log(Object.keys(q).length);
+//console.log(Object.keys(q).length);
 
-console.log(q.status);
-console.log(q.min_price);
-console.log(q.max_price);
+//console.log(q.status);
+//console.log(q.min_price);
+//console.log(q.max_price);
   //console.log(min_price);
   //console.log(max_price);
     if(Object.keys(q).length === 0){
@@ -269,7 +269,7 @@ updateorderprice(id, data, token) {
  else {
 
      if(reflection){
-    
+   if (reflection.user_id === reflectionx.id){     
     this.reflectioncreateorder[index].old_price_offered = data['price_offered'] || reflection.price_offered || reflection.new_price_offered  ;
     this.reflectioncreateorder[index].price_offered = this.reflectioncreateorder[index].old_price_offered; 
     delete this.reflectioncreateorder[index].price_offered;
@@ -281,6 +281,13 @@ updateorderprice(id, data, token) {
     */
     return this.reflectioncreateorder[index];
   }
+  else {
+
+    const reflectioncaraddd = {"status":404 , "message": "Sorry, you are not the order's Owner"};
+          return reflectioncaraddd;
+  }
+
+  }//  end if refelction 
  
   else {
  
@@ -308,9 +315,17 @@ updateorderprice(id, data, token) {
 
    else{
    if (reflection){   
+    if (reflection.user_id === reflectionx.id){
     this.reflectionscreatecaradd[index].status = "sold" ;
        
     return this.reflectionscreatecaradd[index];
+  }
+
+  else {
+
+    const reflectioncaraddd = {"status":404 , "message": "Sorry, you are not the ad's Owner"};
+          return reflectioncaraddd;
+  }
   }
   else {
     const reflectioncaraddd = {"status":404 , "message": "car add not found to be updated to sold"};
@@ -334,12 +349,21 @@ updateorderprice(id, data, token) {
   else {
 
     if(reflection){
-     console.log(reflection.status)
+     //console.log(reflection.status)
      if (reflection.status === "available"){    
+
+    if (reflection.user_id === reflectionx.id){
       
     this.reflectionscreatecaradd[index].price = parseFloat(data.price) ;
        
     return this.reflectionscreatecaradd[index];
+  }
+  else {
+
+    const reflectioncaraddd = {"status":404 , "message": "Sorry, you are not the ad's Owner"};
+          return reflectioncaraddd;
+  }
+
   }
   else {
 
