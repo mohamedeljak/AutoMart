@@ -6,38 +6,13 @@ create(req, res) {
       !req.body.is_admin === " " ) {
       return res.status(400).send({'message': ' signup All fields are required when signup'})
     }
- const data = req.body;
- console.log(data);
- const schema = Joi.object().keys({
-    email:Joi.string().email().required(),
-    first_name:Joi.string().alphanum().required(),
-    last_name: Joi.string().alphanum().required(),
-    address :Joi.string().alphanum().required(),
-    is_admin : Joi.boolean().default(false),
-     password : Joi.string().alphanum().required()
-
-    });
- Joi.validate(data, schema, (err, value) => {
- if (err) {
-             console.log(schema.email);
-            // send a 422 error response if validation fails
-            res.status(422).json({
-                status: 'error',
-                message: 'Invalid request data',
-              
-            });
-            
-            }
-
-            else {
-
+ 
+ 
            const reflection = userModel.create(req.body);
     return res.status(201).send({"status":201 , "message": "User is created", "data" : reflection   });
 
             
-            }
-            });
-
+            
 
     
   },
@@ -59,26 +34,8 @@ create(req, res) {
   },
   getunsigninuser(req, res) {
   
-const data = req.body;
- console.log(data);
- const schema = Joi.object().keys({
-    email:Joi.string().email().required(),
-    password : Joi.string().alphanum().required()
-  });
 
-Joi.validate(data, schema, (err, value) => {
- if (err) {
-             console.log(schema.email);
-            // send a 422 error response if validation fails
-            res.status(422).json({
-                status: 'error',
-                message: 'Invalid request data',
-              
-            });
-            
-            }
 
-else {
 
    ////////////////////////////if ok
     const reflection = userModel.getunsigninuser(req.body);
@@ -91,8 +48,6 @@ else {
     return res.status(200).send({"status":200 , "message": "User Log in", "data":reflection});
   }   // if ok 
 
-}
-      });
   
 
   } // end signinuser

@@ -4,6 +4,12 @@ import Reflection from './src/controllers/Reflection';
 import user from './src/controllers/user';
 import auth from './src/mid/authenticationMiddleware';
 import authadmin from './src/mid/authenticonAdmin';
+import Valicreatead from './src/mid/createAdVali';
+import Valicreateorder from './src/mid/createOrderVali';
+import ValiupdatecarAD from './src/mid/UpdatecarAdVali';
+import ValiupdateOrder from './src/mid/UpdateOrderVali';
+import ValiSingup from './src/mid/SignupVali';
+import ValiSingin from './src/mid/SigninVali';
 const app = express()
 
 app.use(express.json())
@@ -12,25 +18,25 @@ app.get('/', (req, res) => {
   return res.status(200).send({'message': 'YAY! Congratulations! Your first endpoint is working'});
 })
 // Signup , and Get All Signup Users 
-app.post('/api/v1/auth/signup', user.create); // tested
+app.post('/api/v1/auth/signup', ValiSingup ,user.create); // tested
 //app.get('/api/v1/signup/all', user.getAll); // tested
 
 // Signin , and Get All Signin Users
-app.post('/api/v1/auth/signin', user.getunsigninuser);  // tested
+app.post('/api/v1/auth/signin', ValiSingin , user.getunsigninuser);  // tested
 //app.get('/api/v1/signin/all', user.getAllsigninusers);// tested
 
 // create , and show all car add  , update car status , update car price , get car by id, AND DELETE CAR AD
-app.post('/api/v1/car', authadmin ,Reflection.createcarad); // tested
+app.post('/api/v1/car', Valicreatead ,authadmin ,Reflection.createcarad); // tested
 //app.get('/api/v1/car', Reflection.getAllcarsads); // tested
 app.patch('/api/v1/car/:id/status',auth, Reflection.updatecarstatus); // tested
-app.patch('/api/v1/car/:id/price', auth ,Reflection.updatecarprice); // tested
+app.patch('/api/v1/car/:id/price', ValiupdatecarAD , auth ,Reflection.updatecarprice); // tested
 app.get('/api/v1/car/:id', Reflection.getOneCar);// tested
 app.delete('/api/v1/car/:id', auth , Reflection.deletecarad); 
 //  create . and show , and update  order   price
 
-app.post('/api/v1/order/:car_id' , auth , Reflection.createorderad); // tested
+app.post('/api/v1/order/:car_id' , Valicreateorder ,auth , Reflection.createorderad); // tested
 app.get('/api/v1/orders/all', Reflection.getAllorders);// tested
-app.patch('/api/v1/order/:id/price', auth, Reflection.updateorderprice); // tested
+app.patch('/api/v1/order/:id/price',ValiupdateOrder, auth, Reflection.updateorderprice); // tested
 app.get('/api/v1/order/:id', auth , Reflection.getOrderOne); // tested
 
 // view car unsold , view unsold car with price rang
