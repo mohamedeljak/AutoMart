@@ -32,7 +32,7 @@ const schema = Joi.object().keys({
             // send a 422 error response if validation fails
             res.status(422).json({
                 status: 'error',
-                message: 'Invalid request data',
+                message: 'Invalid Login Data',
               
             });
             
