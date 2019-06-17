@@ -8,7 +8,5 @@ cache:
 script:
      npm run coveralls
 
-branches:
-  only:
-    - develop-2
+
     
