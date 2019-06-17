@@ -85,7 +85,7 @@ const newReflectionsign = {
          email: reflection.email ,
          manufacture:data.manufacture,
          model: data.model ,
-         price: data.price,
+         price: parseFloat(data.price),
          state : data.state ,
          status : data.status || 'available' ,
          created_on: moment.now(),
@@ -140,8 +140,8 @@ const newReflectionsign = {
          id: uuid.v4(),   
          user_id:reflection.id,
          car_id : reflectionfindcartoorder.id,
-         price: data.price,    
-         price_offered : data.price_offered,
+         price: reflectionfindcartoorder.price,    
+         price_offered : parseFloat(data.price_offered),
          status : 'available' ,
          created_on: moment.now(),
          modified_on: moment.now()
@@ -269,7 +269,14 @@ updateorderprice(id, data, token) {
  else {
 
      if(reflection){
-   if (reflection.user_id === reflectionx.id){     
+   if (reflection.user_id === reflectionx.id){
+   const car_id = this.reflectioncreateorder[index].car_id;
+   console.log("looool="+car_id);    
+   const reflectionfindsold = this.findCarOne(car_id);
+  
+  
+    if (reflectionfindsold.status === "available"){
+
     this.reflectioncreateorder[index].old_price_offered = data['price_offered'] || reflection.price_offered || reflection.new_price_offered  ;
     this.reflectioncreateorder[index].price_offered = this.reflectioncreateorder[index].old_price_offered; 
     delete this.reflectioncreateorder[index].price_offered;
@@ -280,6 +287,17 @@ updateorderprice(id, data, token) {
     this.reflections[index].modifiedDate = moment.now()
     */
     return this.reflectioncreateorder[index];
+  }
+  
+ else {
+const reflectioncaraddd = {"status":404 , "message": "Sorry, you can not upate your offered price as this car already sold"};
+          return reflectioncaraddd;
+  
+
+ }
+
+
+
   }
   else {
 

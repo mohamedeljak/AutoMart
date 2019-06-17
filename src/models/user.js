@@ -62,13 +62,28 @@ class user {
     console.log(q.email);
     console.log(q.password);
     //console.log(Object.keys(q).length);
-   const emailfound = this.reflections.find(reflect => reflect.email === q.email);
+    //const reflection = this.findOne(id);
+    //const index = this.reflections.indexOf(reflection);
+   //const emailfound = this.reflections.find(reflect => reflect.email === q.email);
+    const reflection = this.reflections.find(reflect => reflect.email === q.email)
+    if (reflection){
+    const index = this.reflections.indexOf(reflection);
+    console.log("index="+index); 
+
    const passwordfound = this.reflections.find(reflect => reflect.password === q.password); 
-   if (emailfound && passwordfound){
+   if ((this.reflections[index].email === q.email) && (this.reflections[index].password === q.password)){
   
     return this.reflections.find(reflect => reflect.email === q.email);
     }
+    else {
 
+      return {"status":404 , "message": "Email or password Wrong"};    
+    
+    }
+
+  }
+  else
+    {  return {"status":404 , "message": "User  not found"};    }
   }
   //////////////////////////////////////End signin
 ///////////////////////////////create car post ad

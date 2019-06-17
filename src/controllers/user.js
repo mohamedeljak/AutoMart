@@ -59,12 +59,43 @@ create(req, res) {
   },
   getunsigninuser(req, res) {
   
+const data = req.body;
+ console.log(data);
+ const schema = Joi.object().keys({
+    email:Joi.string().email().required(),
+    password : Joi.string().alphanum().required()
+  });
+
+Joi.validate(data, schema, (err, value) => {
+ if (err) {
+             console.log(schema.email);
+            // send a 422 error response if validation fails
+            res.status(422).json({
+                status: 'error',
+                message: 'Invalid request data',
+              
+            });
+            
+            }
+
+else {
+
+   ////////////////////////////if ok
     const reflection = userModel.getunsigninuser(req.body);
-    if (!reflection) {
-      return res.status(404).send({'message': '  user not found'});
-    }
-    return res.status(200).send(reflection);
-  }
+    var keyreflection = Object.keys(reflection).length;
+    console.log(reflection);
+    if (keyreflection === 2) {
+      return res.status(200).send({"status":404 , "message": "User not found ", "data":reflection});
+          }
+    else {
+    return res.status(200).send({"status":200 , "message": "User Log in", "data":reflection});
+  }   // if ok 
+
+}
+      });
+  
+
+  } // end signinuser
 
 
 

@@ -1,4 +1,5 @@
 import ReflectionModel from '../models/Reflection';
+const Joi = require('joi');
 
 const Reflection = {
   /**
@@ -23,9 +24,31 @@ const Reflection = {
     return res.status(201).send(reflection);
   },
  createcarad(req, res) {
+   
+       const data = req.body;
+ console.log("createaddata="+data);
+ const schema = Joi.object().keys({
+    
+    manufacture:Joi.string().alphanum().required(),
+    price: Joi.number().required(),
+    });     
+   Joi.validate(data, schema, (err, value) => {
+ if (err) {
+             console.log(schema.email);
+            // send a 422 error response if validation fails
+            res.status(422).json({
+                status: 'error',
+                message: 'Invalid request data',
+              
+            });
+            
+            }         
+            else { //  valdtion ok
+
+  ////////////////  if ok
   var token = req.headers['access-token'];
   //console.log("token==="+token);
-    if (!req.body.email || req.body.email === ""  ||  !req.body.manufacture ||  !req.body.price) {
+    if (!req.body.manufacture ||  !req.body.price) {
       return res.status(400).send({'message': '  car ad  All fields are required'})
     }
     const reflection = ReflectionModel.createcarad(req.body,token);
@@ -40,13 +63,34 @@ const Reflection = {
                              return res.status(201).send({"status":201 , "message": " Car ad not created ", "data" :reflection});
                             //return res.status(201).send({"status":404 , "message": "User not found check token please"});
 
-                          } 
+                          }  ////////////  if ok 
+    } // End Valdtion ok 
+ 
+ });
   },
 
 createorderad(req, res) {
+const data = req.body;
+ console.log("createaddata="+data);
+ const schema = Joi.object().keys({
+    price_offered: Joi.number().required(),
+    });     
+   Joi.validate(data, schema, (err, value) => {
+ if (err) {
+             console.log(schema.email);
+            // send a 422 error response if validation fails
+            res.status(422).json({
+                status: 'error',
+                message: 'Invalid request data',
+              
+            });
+            
+            }
+             else {  ///  valdtion ok
+/////////////////////////////////  if ok 
   var token = req.headers['access-token'];
   //console.log("token==="+token);
-    if (!req.body.car_id || !req.body.price  ||  !req.body.price_offered) {
+    if (!req.body.price_offered) {
       return res.status(400).send({'message': '  order ad  All fields are required'})
     }
     const reflection = ReflectionModel.createorderad(req.body,token,req.params.car_id);
@@ -56,7 +100,10 @@ createorderad(req, res) {
      }
      else {
           return res.status(201).send({"status":201 , "message": " Order ad not created ", "data" :reflection});
-        }
+        }//////////////////////if ok 
+  } // End Validtion is OK 
+
+  });
   },
 
 
