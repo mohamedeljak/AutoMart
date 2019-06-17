@@ -11,6 +11,7 @@
     "test": "jest",
     "test --watch": "jest --watch",
     "test:coveralls": "jest  --coverage --coverageReporters=text-lcov | coveralls",
+    "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls",
     "build": "babel server.js --out-dir build",
     "test-init": "./node_modules/jasmine/bin/jasmine.js init",
     "start": "babel-watch server.js"
