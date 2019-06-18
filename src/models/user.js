@@ -8,7 +8,7 @@ import jwt from 'jsonwebtoken';
 const Joi = require('joi');
 const JSON = require('circular-json');
 //const key = require('../key');
-const key = require('../mid/key');
+const key = require('../middlewares/key');
 
 class user {
   /**
