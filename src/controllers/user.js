@@ -11,10 +11,6 @@ create(req, res) {
            const reflection = userModel.create(req.body);
     return res.status(201).send({"status":201 , "message": "User is created", "data" : reflection   });
 
-            
-            
-
-    
   },
 
  createsignin(req, res) {

@@ -55,3 +55,5 @@ app.delete('/api/v1/reflections/:id', Reflection.delete);
 
 app.listen(3000)
 console.log('app running on port ', 3000);
+
+export default app;
