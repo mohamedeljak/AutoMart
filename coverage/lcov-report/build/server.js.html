@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for build/server.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">build/</a> server.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">97.62% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>41/42</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>4/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/1</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">97.56% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>40/41</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+&nbsp;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+&nbsp;
+var _express = _interopRequireDefault(require("express"));
+&nbsp;
+var _Reflection = _interopRequireDefault(require("./src/controllers/Reflection"));
+&nbsp;
+var _Cars = _interopRequireDefault(require("./src/controllers/Cars"));
+&nbsp;
+var _Orders = _interopRequireDefault(require("./src/controllers/Orders"));
+&nbsp;
+var _user = _interopRequireDefault(require("./src/controllers/user"));
+&nbsp;
+var _authenticationMiddleware = _interopRequireDefault(require("./src/middlewares/authenticationMiddleware"));
+&nbsp;
+var _authenticonAdmin = _interopRequireDefault(require("./src/middlewares/authenticonAdmin"));
+&nbsp;
+var _createAdVali = _interopRequireDefault(require("./src/middlewares/createAdVali"));
+&nbsp;
+var _createOrderVali = _interopRequireDefault(require("./src/middlewares/createOrderVali"));
+&nbsp;
+var _UpdatecarAdVali = _interopRequireDefault(require("./src/middlewares/UpdatecarAdVali"));
+&nbsp;
+var _UpdateOrderVali = _interopRequireDefault(require("./src/middlewares/UpdateOrderVali"));
+&nbsp;
+var _SignupVali = _interopRequireDefault(require("./src/middlewares/SignupVali"));
+&nbsp;
+var _SigninVali = _interopRequireDefault(require("./src/middlewares/SigninVali"));
+&nbsp;
+function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? obj : { default: obj }; }
+&nbsp;
+// server.js
+const app = (0, _express.default)();
+app.use(_express.default.json());
+app.get('/', (req, res) =&gt; {
+<span class="cstat-no" title="statement not covered" >  return res.status(200).send({</span>
+    'message': 'YAY! Congratulations! Your first endpoint is working'
+  });
+}); // Signup , and Get All Signup Users 
+&nbsp;
+app.post('/api/v1/auth/signup', _SignupVali.default, _user.default.create); // tested
+//app.get('/api/v1/signup/all', user.getAll); // tested
+// Signin , and Get All Signin Users
+&nbsp;
+app.post('/api/v1/auth/signin', _SigninVali.default, _user.default.getunsigninuser); // tested
+//app.get('/api/v1/signin/all', user.getAllsigninusers);// tested
+// create , and show all car add  , update car status , update car price , get car by id, AND DELETE CAR AD
+&nbsp;
+app.post('/api/v1/car', _createAdVali.default, _authenticonAdmin.default, _Cars.default.createcarad); // tested
+//app.get('/api/v1/car', Reflection.getAllcarsads); // tested
+&nbsp;
+app.patch('/api/v1/car/:id/status', _authenticationMiddleware.default, _Cars.default.updatecarstatus); // tested
+&nbsp;
+app.patch('/api/v1/car/:id/price', _UpdatecarAdVali.default, _authenticationMiddleware.default, _Cars.default.updatecarprice); // tested
+&nbsp;
+app.get('/api/v1/car/:id', _authenticationMiddleware.default, _Cars.default.getOneCar); // tested
+&nbsp;
+app.delete('/api/v1/car/:id', _authenticationMiddleware.default, _Cars.default.deletecarad); //  create . and show , and update  order   price
+&nbsp;
+app.post('/api/v1/order/:car_id', _createOrderVali.default, _authenticationMiddleware.default, _Orders.default.createorderad); // tested
+&nbsp;
+app.get('/api/v1/orders/all', _Orders.default.getAllorders); // tested
+&nbsp;
+app.patch('/api/v1/order/:id/price', _UpdateOrderVali.default, _authenticationMiddleware.default, _Orders.default.updateorderprice); // tested
+&nbsp;
+app.get('/api/v1/order/:id', _authenticationMiddleware.default, _Orders.default.getOrderOne); // tested
+// view car unsold , view unsold car with price rang
+//app.get('/api/v1/car', Reflection.getunsoldcar);
+&nbsp;
+app.get('/api/v1/car', _Cars.default.getunsoldcarpricerange); // tested
+&nbsp;
+app.get('/api/v1/reflections', _Reflection.default.getAll);
+app.get('/api/v1/reflections/:id', _Reflection.default.getOne);
+app.get('/api/v1/reflectionsxx', _Reflection.default.getA1);
+app.put('/api/v1/reflections/:id', _Reflection.default.update);
+app.delete('/api/v1/reflections/:id', _Reflection.default.delete);
+app.listen(3000);
+console.log('app running on port ', 3000);
+var _default = app;
+exports.default = _default;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jun 19 2019 11:00:44 GMT+0200 (Central Africa Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
