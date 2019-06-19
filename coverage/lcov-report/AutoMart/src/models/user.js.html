@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">29.17% </span>
+        <span class="strong">54.17% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>14/48</span>
+        <span class='fraction'>26/48</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">28.57% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/14</span>
+        <span class='fraction'>4/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">11.76% </span>
+        <span class="strong">35.29% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/17</span>
+        <span class='fraction'>6/17</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">54.76% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>14/42</span>
+        <span class='fraction'>23/42</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -261,21 +261,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -414,22 +414,22 @@ class user {
   }
   //////////////////////////////////////End signup
   ///////////////////////////////Signin
-<span class="fstat-no" title="function not covered" >  getunsigninuser(</span>q) {
-<span class="cstat-no" title="statement not covered" >    console.</span>log(q.email);
-<span class="cstat-no" title="statement not covered" >    console.</span>log(q.password);
+  getunsigninuser(q) {
+    console.log(q.email);
+    console.log(q.password);
     //console.log(Object.keys(q).length);
     //const reflection = this.findOne(id);
     //const index = this.reflections.indexOf(reflection);
    //const emailfound = this.reflections.find(reflect =&gt; reflect.email === q.email);
-    const reflection = <span class="cstat-no" title="statement not covered" >this.r</span>eflections.find(<span class="fstat-no" title="function not covered" >reflect </span>=&gt; <span class="cstat-no" title="statement not covered" >reflect.email === q.email)</span>
-<span class="cstat-no" title="statement not covered" >    if (reflection){</span>
-    const index = <span class="cstat-no" title="statement not covered" >this.r</span>eflections.indexOf(reflection);
-<span class="cstat-no" title="statement not covered" >    console.</span>log("index="+index); 
+    const reflection = this.reflections.find(reflect =&gt; reflect.email === q.email)
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (reflection){
+    const index = this.reflections.indexOf(reflection);
+    console.log("index="+index); 
 &nbsp;
-   const passwordfound = <span class="cstat-no" title="statement not covered" >this.r</span>eflections.find(<span class="fstat-no" title="function not covered" >reflect </span>=&gt; <span class="cstat-no" title="statement not covered" >reflect.password === q.password); </span>
-<span class="cstat-no" title="statement not covered" >   if ((this.reflections[index].email === q.email) &amp;&amp; (this.reflections[index].password === q.password)){</span>
+   const passwordfound = this.reflections.find(reflect =&gt; reflect.password === q.password); 
+   <span class="missing-if-branch" title="else path not taken" >E</span>if ((this.reflections[index].email === q.email) &amp;&amp; (this.reflections[index].password === q.password)){
   
-<span class="cstat-no" title="statement not covered" >    return t</span>his.reflections.find(<span class="fstat-no" title="function not covered" >reflect </span>=&gt; <span class="cstat-no" title="statement not covered" >reflect.email === q.email);</span>
+    return this.reflections.find(reflect =&gt; reflect.email === q.email);
     }
     else {
 &nbsp;
@@ -514,7 +514,7 @@ export default new user();</pre></td></tr>
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jun 18 2019 20:35:18 GMT+0200 (Central Africa Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jun 19 2019 09:20:22 GMT+0200 (Central Africa Time)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

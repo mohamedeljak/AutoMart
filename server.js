@@ -32,7 +32,7 @@ app.post('/api/v1/car', Valicreatead ,authadmin ,car.createcarad); // tested
 //app.get('/api/v1/car', Reflection.getAllcarsads); // tested
 app.patch('/api/v1/car/:id/status',auth, car.updatecarstatus); // tested
 app.patch('/api/v1/car/:id/price', ValiupdatecarAD , auth ,car.updatecarprice); // tested
-app.get('/api/v1/car/:id', car.getOneCar);// tested
+app.get('/api/v1/car/:id', auth , car.getOneCar);// tested
 app.delete('/api/v1/car/:id', auth , car.deletecarad); 
 //  create . and show , and update  order   price
 
