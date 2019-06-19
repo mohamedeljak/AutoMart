@@ -19,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/register": "^7.4.4",
+    "@babel/polyfill" : "^7.4.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "circular-json": "^0.5.9",
