@@ -6,7 +6,7 @@ cache:
     - "node_modules"
 
 script:
-     npm run test:coveralls
+     npm run test
 
 branches:
   only:
