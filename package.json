@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "dev-start": "babel-watch server.js",
-    "build": "npm run clear && babel ./ --out -d build --ignore spec,client,node_modules, tst,UI",
+    "build": "npm run clear && babel ./ --out -d build --ignore spec,client,node_modules,tst,UI",
     "clear": "rimraf build coverage",
     "test": "NODE_ENV=test nyc --reporter=text --reporter=lcov mocha --timeout 1000 --require @babel/polyfill --require @babel/register ./tests/**/*.test.js --exit",
     "test:coveralls": "--coverage --coverageReporters=text-lcov | coveralls",
