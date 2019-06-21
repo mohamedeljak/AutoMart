@@ -1,5 +1,7 @@
 //import ReflectionModel from '../models/Reflection';
 import CarModel from '../models/Cars';
+import { pool } from '../../db';
+
 const Joi = require('joi');
 
 const Car = {
@@ -9,22 +11,8 @@ const Car = {
    * @param {object} res
    * @returns {object} reflection object 
    */
-  create(req, res) {
-    if (!req.body.data.email || !req.body.data.first_name ||  !req.body.data.password) {
-      return res.status(400).send({'message': ' signup All fields are required'})
-    }
-    const reflection = CarModel.create(req.body.data);
-    return res.status(201).send(reflection);
-  },
-
- createsignin(req, res) {
-    if (!req.body.data.email || !req.body.data.first_name ||  !req.body.data.password) {
-      return res.status(400).send({'message': ' SigninAll fields are required'})
-    }
-    const reflection = CarModel.createsignin(req.body.data);
-    return res.status(201).send(reflection);
-  },
- createcarad(req, res) {
+  
+async  createcarad(req, res) {
     var token = req.headers['access-token'];
   //console.log("token==="+token);
     if (!req.body.manufacture ||  !req.body.price) {
@@ -34,12 +22,43 @@ const Car = {
     var keyreflection = Object.keys(reflection).length;
     //console.log("xxxxxxxxxx"+keyreflection); 
     if (keyreflection > 2){ 
-    return res.status(201).send({"status":201 , "message": "Car AD  is created", "data" : reflection});
+  //////////////////////////////////////Data Base work
+const text = `INSERT INTO
+      cars(id,user_id, email,manufacture, model, price  ,status,created_date, modified_date )
+      VALUES($1,$2, $3, $4, $5, $6, $7,$8, $9)
+      returning *`;
+    const values = [
+      
+      reflection.id,
+      reflection.user_id,
+      reflection.email,
+      reflection.manufacture,
+      reflection.model,
+      reflection.price,
+      reflection.status,
+      reflection.created_on,
+      reflection.modified_on
+    ];
+    try {
+      const { rows } = await pool.query(text, values);
+      return res.status(201).send({"status":201 , "message": "Car AD created successfully", "data" :rows[0]});
+    } catch(error) {
+      //return res.status(400).send(error.message);
+       
+      return res.status(404).send({'message': '  Car AD created not created'});
+    }
+  //////////////////////////////////////// End Data base work
+
+
+
+
+
+    //return res.status(201).send({"status":201 , "message": "Car AD  is created", "data" : reflection});
                           }
 
                           else{
                             //console.log(ReflectionModel.createcarad.reflectioncaraddnotfound);
-                             return res.status(201).send({"status":201 , "message": " Car ad not created ", "data" :reflection});
+                             return res.status(404).send({"status":404 , "message": " Car ad not created ", "data" :reflection});
                             //return res.status(201).send({"status":404 , "message": "User not found check token please"});
 
                           }  

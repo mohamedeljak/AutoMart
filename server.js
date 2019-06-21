@@ -1,6 +1,6 @@
 // server.js
 import express from 'express';
-import Reflection from './src/controllers/Reflection';
+
 import car from './src/controllers/Cars';
 import Order from './src/controllers/Orders';
 import user from './src/controllers/user';
@@ -36,7 +36,7 @@ app.get('/api/v1/car/:id', auth , car.getOneCar);// tested
 app.delete('/api/v1/car/:id', auth , car.deletecarad); 
 //  create . and show , and update  order   price
 
-app.post('/api/v1/order/:car_id' , Valicreateorder ,auth , Order.createorderad); // tested
+app.post('/api/v1/order/:car_id'  , Order.createorderad); // tested
 app.get('/api/v1/orders/all', Order.getAllorders);// tested
 app.patch('/api/v1/order/:id/price',ValiupdateOrder, auth, Order.updateorderprice); // tested
 app.get('/api/v1/order/:id', auth , Order.getOrderOne); // tested
@@ -44,13 +44,13 @@ app.get('/api/v1/order/:id', auth , Order.getOrderOne); // tested
 // view car unsold , view unsold car with price rang
 //app.get('/api/v1/car', Reflection.getunsoldcar);
 app.get('/api/v1/car', car.getunsoldcarpricerange); // tested
-
+/*
 app.get('/api/v1/reflections', Reflection.getAll);
 app.get('/api/v1/reflections/:id', Reflection.getOne);
 app.get('/api/v1/reflectionsxx', Reflection.getA1);
 app.put('/api/v1/reflections/:id', Reflection.update);
 app.delete('/api/v1/reflections/:id', Reflection.delete);
-
+*/
 
 
 app.listen(3000)

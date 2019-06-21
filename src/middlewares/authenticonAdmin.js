@@ -1,5 +1,4 @@
 import express from 'express';
-import Reflection from '../controllers/Reflection';
 import user from '../controllers/user';
 import jwt from 'jsonwebtoken';
 import userx from '../models/user';
@@ -60,11 +59,8 @@ module.exports = (req, res, next) => {
      else {
 
        return res.json({ 
-           status :400,
-        message :"User not Found",
-        data: {  
-
-            message: ' User not Found' } });
+           status :404,
+        message :"User not Found"});
 
      }
 

@@ -1,5 +1,4 @@
 import express from 'express';
-import Reflection from '../controllers/Reflection';
 import user from '../controllers/user';
 import jwt from 'jsonwebtoken';
 //import tokenkey from './key';
@@ -16,9 +15,11 @@ app.use(express.json())
 //app.use('/api/v1/car', ProtectedRoutes);
 module.exports = (req, res, next) => {
 const data = req.body;
+//console.log("vvvvvvvvvvvvvvvvvvv"+req.body.model)
 const schema = Joi.object().keys({
     
     manufacture:Joi.string().alphanum().required(),
+    model:Joi.string().alphanum().required(),
     price: Joi.number().required(),
     });     
    Joi.validate(data, schema, (err, value) => {

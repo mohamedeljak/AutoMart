@@ -70,7 +70,7 @@ describe("Auth", () => {
 describe("CREATE A CAR AD", () => {
     describe(" TEST (3 )CREATE A CAR AD", () => {
         it("it hould return 200 when   car AD created", (done) => {
-            const caraddata = { "manufacture": "toyota","price" : "90" }  ;
+            const caraddata = { "manufacture": "toyota", "model" :"hilux" ,"price" : 90 }  ;
             chai
                 .request(app)
                 .post("/api/v1/car")

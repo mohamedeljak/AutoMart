@@ -1,5 +1,4 @@
 import express from 'express';
-import Reflection from '../controllers/Reflection';
 import user from '../controllers/user';
 import jwt from 'jsonwebtoken';
 //import tokenkey from './key';

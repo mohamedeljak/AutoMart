@@ -35,7 +35,7 @@ class user {
     
     const email= data.email;
     const token = jwt.sign({email:email},key.tokenkey);
-   
+  const  myDate =  moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
   const newReflection = {
          id: uuid.v4(),
          email: data.email ,
@@ -45,8 +45,8 @@ class user {
          address :data.address ,
          is_admin : data.is_admin ,
          password : data.password,
-         createdDate: moment.now(),
-         modifiedDate: moment.now()
+         createdDate: myDate,
+         modifiedDate: myDate
          };
       
       //console.log(newReflection.token)

@@ -17,49 +17,7 @@ class Reflection {
    * @returns {object} reflection object
    */
   ///////////////////////////////Signup
-  create(data) {
-    const newReflection = {
-      stutas: '1' || ' ',
-      data :{
-
-         id: uuid.v4(),
-         email: data.email ,
-         first_name: data.first_name,
-         last_name: data.last_name,
-         token : uuid.v4(),
-         address :data.address ,
-         is_admin : data.is_admin ,
-         password : data.password
-         
-         },
-      createdDate: moment.now(),
-      modifiedDate: moment.now()
-    };
-    this.reflections.push(newReflection);
-    return newReflection
-  }
-  //////////////////////////////////////End signup
-  ///////////////////////////////Signin
-  createsignin(data) {
-const newReflectionsign = {
-      stutas: '1',
-      data :{
-
-         id: uuid.v4(),
-         email: data.email ,
-         first_name: data.first_name,
-         last_name: data.last_name ,
-         token : uuid.v4(),
-         address :data.address ,
-         is_admin : data.is_admin ,
-         password : data.password
-         },
-      createdDate: moment.now(),
-      modifiedDate: moment.now()
-    };
-    this.reflectionssignin.push(newReflectionsign);
-    return newReflectionsign
-  }
+  
   //////////////////////////////////////End signin
 ///////////////////////////////create car post ad
   createcarad(data,token) {
@@ -77,6 +35,7 @@ const newReflectionsign = {
     }
     else {
       //console.log("found="+reflection.email);
+     const  myDate =  moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
      const newReflectioncreatecarad = {
     
 
@@ -86,10 +45,9 @@ const newReflectionsign = {
          manufacture:data.manufacture,
          model: data.model ,
          price: parseFloat(data.price),
-         state : data.state ,
          status : data.status || 'available' ,
-         created_on: moment.now(),
-         modified_on: moment.now()
+         created_on: myDate,
+         modified_on: myDate
          };
     this.reflectionscreatecaradd.push(newReflectioncreatecarad);
     return newReflectioncreatecarad
@@ -100,60 +58,7 @@ const newReflectionsign = {
   }
   //////////////////////////////////////create car post a
   ///////////////////////////////create order post
-  createorderad(data,token,car_id) {
-    const reflection = user.reflections.find(reflect => reflect.token === token);
-    
-    if(!reflection){
-      const reflectionodernotfound  = {"status":404 , "message": "User not found check please"};
-     return reflectionodernotfound ;
-       
-
-
-    }
-
-   else {
-     const reflectionfindcartoorder = this.reflectionscreatecaradd.find(reflect => reflect.id === car_id);
-      const reflectionfindcartoorderinorder = this.reflectioncreateorder.find(reflect => reflect.car_id === car_id);  
-   //   console.log("gggggggggggggggg"+reflectionfindcartoorderinorder);
-      
-    if (!reflectionfindcartoorder){
-          const reflectionorercaridnotfound = {"status":404 , "message": "this car ad not found"};
-          return reflectionorercaridnotfound;
-          
-    } 
-
-  else {
-
- if(reflectionfindcartoorderinorder){
-                 
-              const reflectionorercaridnotfoundx = {"status":404 , "message": "this car  had already ordered"};
-          return reflectionorercaridnotfoundx;
-
-          }
-
-
- else {
-    //console.log("carid"+reflectionfindcartoorder.id);
-    const newReflectioncreateorder = {
-      
-
-         id: uuid.v4(),   
-         user_id:reflection.id,
-         car_id : reflectionfindcartoorder.id,
-         price: reflectionfindcartoorder.price,    
-         price_offered : parseFloat(data.price_offered),
-         status : 'available' ,
-         created_on: moment.now(),
-         modified_on: moment.now()
-        
-      
-    };
-    this.reflectioncreateorder.push(newReflectioncreateorder);
-    return newReflectioncreateorder
-  }
-  }
-  }
-  }
+  
   ////////////////////////////////////// end create order post
 
 
@@ -253,71 +158,6 @@ return this.reflectionscreatecaradd.filter((reflect => reflect.data.status === s
   }
 
   
-updateorderprice(id, data, token) {
-  //console.log("jjjjjjjjjjjjjjjjjjjjjjjjj");
-    const reflection = this.findoderOne(id);
-    const index = this.reflectioncreateorder.indexOf(reflection);
-    const reflectionx = user.reflections.find(reflect => reflect.token === token);
-    
-    if(!reflectionx){
-      const reflectioncaraddnotfound  = {"status":404 , "message": "User not found check please"};
-     //console.log("cccccccccc"+reflectioncaraddnotfound);
-     return reflectioncaraddnotfound;
-
-   }
- 
- else {
-
-     if(reflection){
-   if (reflection.user_id === reflectionx.id){
-   const car_id = this.reflectioncreateorder[index].car_id;
-   console.log("looool="+car_id);    
-   const reflectionfindsold = this.findCarOne(car_id);
-  
-  
-    if (reflectionfindsold.status === "available"){
-
-    this.reflectioncreateorder[index].old_price_offered = data['price_offered'] || reflection.price_offered || reflection.new_price_offered  ;
-    this.reflectioncreateorder[index].price_offered = this.reflectioncreateorder[index].old_price_offered; 
-    delete this.reflectioncreateorder[index].price_offered;
-   this.reflectioncreateorder[index].new_price_offered= data.price ;
-    /*
-    this.reflections[index].lowPoint = data['lowPoint'] || reflection.lowPoint;
-    this.reflections[index].takeAway = data['takeAway'] || reflection.takeAway;
-    this.reflections[index].modifiedDate = moment.now()
-    */
-    return this.reflectioncreateorder[index];
-  }
-  
- else {
-const reflectioncaraddd = {"status":404 , "message": "Sorry, you can not upate your offered price as this car already sold"};
-          return reflectioncaraddd;
-  
-
- }
-
-
-
-  }
-  else {
-
-    const reflectioncaraddd = {"status":404 , "message": "Sorry, you are not the order's Owner"};
-          return reflectioncaraddd;
-  }
-
-  }//  end if refelction 
- 
-  else {
- 
-     const reflectionord = {"status":404 , "message": "Order not found"};
-          return reflectionord;
-
-  }
-
-}
-  
-
-  }
 
 
  updatecarstatus(id, data, token) {

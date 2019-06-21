@@ -18,49 +18,7 @@ class Reflection {
    * @returns {object} reflection object
    */
   ///////////////////////////////Signup
-  create(data) {
-    const newReflection = {
-      stutas: '1' || ' ',
-      data :{
-
-         id: uuid.v4(),
-         email: data.email ,
-         first_name: data.first_name,
-         last_name: data.last_name,
-         token : uuid.v4(),
-         address :data.address ,
-         is_admin : data.is_admin ,
-         password : data.password
-         
-         },
-      createdDate: moment.now(),
-      modifiedDate: moment.now()
-    };
-    this.reflections.push(newReflection);
-    return newReflection
-  }
-  //////////////////////////////////////End signup
-  ///////////////////////////////Signin
-  createsignin(data) {
-const newReflectionsign = {
-      stutas: '1',
-      data :{
-
-         id: uuid.v4(),
-         email: data.email ,
-         first_name: data.first_name,
-         last_name: data.last_name ,
-         token : uuid.v4(),
-         address :data.address ,
-         is_admin : data.is_admin ,
-         password : data.password
-         },
-      createdDate: moment.now(),
-      modifiedDate: moment.now()
-    };
-    this.reflectionssignin.push(newReflectionsign);
-    return newReflectionsign
-  }
+  
   //////////////////////////////////////End signin
 ///////////////////////////////create car post ad
   createcarad(data,token) {
@@ -102,7 +60,8 @@ const newReflectionsign = {
   //////////////////////////////////////create car post a
   ///////////////////////////////create order post
   createorderad(data,token,car_id) {
-    console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+    const  myDate =  moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
+    console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkk"+myDate);
     const reflection = user.reflections.find(reflect => reflect.token === token);
     
     if(!reflection){
@@ -135,6 +94,8 @@ const newReflectionsign = {
 
 
  else {
+       
+
     //console.log("carid"+reflectionfindcartoorder.id);
     const newReflectioncreateorder = {
       
@@ -144,9 +105,8 @@ const newReflectionsign = {
          car_id : reflectionfindcartoorder.id,
          price: reflectionfindcartoorder.price,    
          price_offered : parseFloat(data.price_offered),
-         status : 'available' ,
-         created_on: moment.now(),
-         modified_on: moment.now()
+         created_on: myDate,
+         modified_on: myDate
         
       
     };

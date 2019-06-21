@@ -1,5 +1,5 @@
-import ReflectionModel from '../models/Reflection';
 import OrderModel from '../models/Orders';
+import { pool } from '../../db';
 const Joi = require('joi');
 
 const Order = {
@@ -9,21 +9,7 @@ const Order = {
    * @param {object} res
    * @returns {object} reflection object 
    */
-  create(req, res) {
-    if (!req.body.data.email || !req.body.data.first_name ||  !req.body.data.password) {
-      return res.status(400).send({'message': ' signup All fields are required'})
-    }
-    const reflection = OrderModel.create(req.body.data);
-    return res.status(201).send(reflection);
-  },
-
- createsignin(req, res) {
-    if (!req.body.data.email || !req.body.data.first_name ||  !req.body.data.password) {
-      return res.status(400).send({'message': ' SigninAll fields are required'})
-    }
-    const reflection = OrderModel.createsignin(req.body.data);
-    return res.status(201).send(reflection);
-  },
+  
  createcarad(req, res) {
     var token = req.headers['access-token'];
   //console.log("token==="+token);
@@ -45,7 +31,7 @@ const Order = {
                           }  
   },
 
-createorderad(req, res) {
+async  createorderad(req, res) {
  var token = req.headers['access-token'];
   
     if (!req.body.price_offered) {
@@ -54,10 +40,41 @@ createorderad(req, res) {
     const reflection = OrderModel.createorderad(req.body,token,req.params.car_id);
     var keyreflection = Object.keys(reflection).length;
     if (keyreflection > 2){
-    return res.status(201).send({"status":201 , "message": "Buy Order  is created", "data" : reflection});
+    //return res.status(201).send({"status":201 , "message": "Buy Order  is created", "data" : reflection});
+     //////////////////////////////////////  DB WORK 
+     console.log("zzzzzzzzzzz="+reflection.created_on);
+      const text = `INSERT INTO
+      orders(id,user_id, car_id,price, price_offered,created_date, modified_date )
+      VALUES($1,$2, $3, $4, $5, $6, $7)
+      returning *`;
+    const values = [
+      
+      reflection.id,
+      reflection.user_id,
+      reflection.car_id,
+      reflection.price,
+      reflection.price_offered,
+      reflection.created_on,
+      reflection.modified_on
+    ];
+    try {
+      const { rows } = await pool.query(text, values);
+    
+      return res.status(201).send({"status":201 , "message": "Order created successfully", "data" :rows[0]});
+    } catch(error) {
+      //return res.status(400).send(error.message);
+       
+      return res.status(404).send(error.message);
+    }
+     /////////////////////////////////////// END DATA WORK
+
+
+
+
+
      }
      else {
-          return res.status(201).send({"status":201 , "message": " Order ad not created ", "data" :reflection});
+          return res.status(201).send({"status":404 , "message": " Order ad not created ", "data" :reflection});
         }//////////////////////if ok 
   
   },
